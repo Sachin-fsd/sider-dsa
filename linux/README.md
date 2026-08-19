@@ -1,47 +1,66 @@
-# ScreenSum DSA
+# ScreenSum DSA - Linux Guide
 
-This is an Electron app that captures screenshots and auto-types DSA solutions.
+ScreenSum DSA is an automated Data Structures & Algorithms coding assistant for Linux Mint and other Linux distributions. It captures problem screenshots via global hotkeys and auto-types C++ solutions using Groq AI.
 
-## Build Windows .exe on Linux (cross-compilation)
+---
 
-Prerequisites:
+## System Requirements
 
-- Node 16+ (match Electron version requirements)
-- Wine (for building Windows targets on Linux)
-- `mingw` toolchain if producing portable executables
+- **Linux OS**: Linux Mint, Ubuntu, Debian, or derivative
+- **Dependencies**: `xdotool` (used for simulated human typing)
+  ```bash
+  sudo apt update
+  sudo apt install xdotool
+  ```
 
-Install dependencies:
+---
 
+## Running Locally (Development Mode)
+
+### Step 1: Install Node.js dependencies
 ```bash
+cd linux/
 npm install
 ```
 
-Build an installer for Windows:
+### Step 2: Set up Python virtual environment
+```bash
+python3 -m venv venv
+venv/bin/pip install -r python/requirements.txt
+```
+
+### Step 3: Run the application
+```bash
+npm start
+```
+
+---
+
+## Building Portable AppImage (Shareable Linux App)
+
+To package ScreenSum DSA into a standalone **AppImage** that contains all Python dependencies and libraries pre-bundled (so anyone on Linux can run it with a single click):
 
 ```bash
+cd linux/
 npm run dist
 ```
 
-This uses `electron-builder` and will produce output under `dist/`.
+This command will:
+1. Build the bundled PyInstaller backend (`python/dsa_backend`)
+2. Package the Electron frontend and bundled backend into an AppImage
+3. Output the standalone binary to `dist/ScreenSum DSA-1.0.0.AppImage`
 
-If you don't have Wine, install it on Linux Mint:
-
+### How to use the generated AppImage:
 ```bash
-sudo apt update
-sudo apt install wine64
+chmod +x "dist/ScreenSum DSA-1.0.0.AppImage"
+./"dist/ScreenSum DSA-1.0.0.AppImage"
 ```
 
-Generate Windows icons from the included SVG before building:
+---
 
-```bash
-# install dev deps (sharp and png-to-ico) if not already
-npm install --save-dev sharp png-to-ico
+## Hotkeys
 
-# generate icons (creates icon-*.png and icon.ico in assets/)
-npm run generate-icons
-```
-
-Notes:
-
-- The app includes `assets/icon.svg` used to generate Windows icons.
-- If you want to sign the installer, configure `win.certificateFile` and `win.certificatePassword` in `package.json` or CI secrets.
+- **Alt + 1**: Open Settings (Groq API Key management with round-robin rotation)
+- **Alt + 2**: Take screenshot
+- **Alt + 4**: Solve problem & auto-type solution into code editor
+- **Alt + `**: Stop typing immediately

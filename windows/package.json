@@ -1,0 +1,58 @@
+{
+  "name": "screensum-dsa",
+  "version": "1.0.0",
+  "description": "ScreenSum DSA desktop application for Windows",
+  "author": "Sachin Singh",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "generate-icons": "node ./build/generate-icons.js",
+    "build:backend": "node scripts/build-backend.js",
+    "predist": "npm run build:backend",
+    "dist": "electron-builder --win --x64",
+    "dist:portable": "electron-builder --win portable --x64"
+  },
+  "build": {
+    "appId": "com.screensum.dsa",
+    "productName": "ScreenSum DSA",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!venv/**",
+      "!python/build/**",
+      "!python/build-venv/**",
+      "!python/dsa_backend.spec",
+      "!**/*.pyc",
+      "!**/__pycache__/**",
+      "!node_modules/.cache"
+    ],
+    "extraResources": [
+      {
+        "from": "python/",
+        "to": "python/",
+        "filter": [
+          "dsa_backend.exe"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "assets/icon.ico"
+    }
+  },
+  "dependencies": {
+    "electron-log": "^5.4.4",
+    "electron-store": "^11.0.2",
+    "png-to-ico": "^3.0.2",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3"
+  }
+}

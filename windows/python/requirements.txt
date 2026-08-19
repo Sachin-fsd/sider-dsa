@@ -1,0 +1,4 @@
+groq
+mss
+Pillow
+pyautogui
