@@ -1,0 +1,14 @@
+node_modules/
+venv/
+__pycache__/
+*.pyc
+dist/
+build/
+.env
+*.log
+python/data/
+python/build/
+python/build-venv/
+python/dsa_backend
+python/dsa_backend.spec
+python/dsa_backend.exe

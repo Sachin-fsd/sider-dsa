@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ScreenSum DSA</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="header">
+        <img src="assets/icon.svg" alt="ScreenSum" class="logo" />
+        <h1>ScreenSum DSA</h1>
+        <p>
+          <kbd>Alt</kbd>+<kbd>2</kbd> screenshot &nbsp;
+          <kbd>Alt</kbd>+<kbd>4</kbd> solve &nbsp;
+          <kbd>Alt</kbd>+<kbd>`</kbd> stop
+        </p>
+      </div>
+
+      <div id="settings-panel" class="panel">
+        <h2>Setup</h2>
+        <p>Enter Groq API keys. Each key handles one request, then the next key is used.</p>
+        <div class="form-group">
+          <label>API Keys:</label>
+          <div id="api-keys-container">
+            <div class="api-key-row">
+              <input
+                type="text"
+                class="api-key-input"
+                placeholder="gsk_xxxxxxxxxxxxxxxxxxxx"
+              />
+              <button class="remove-key-btn" style="display: none">&#x2715;</button>
+            </div>
+          </div>
+          <button id="add-key-btn">+ Add Key</button>
+          <button id="save-keys-btn" class="primary-btn">Save Keys</button>
+          <div id="key-info" class="info-box"></div>
+        </div>
+        <div class="form-group">
+          <label for="model-select">Model:</label>
+          <select id="model-select">
+            <option value="qwen/qwen3.6-27b">Qwen 3.6 27B</option>
+            <option value="meta-llama/llama-4-scout-17b-16e-instruct">
+              Llama 4 Scout 17B (Faster)
+            </option>
+            <option value="meta-llama/llama-4-maverick-17b-128e-instruct">
+              Llama 4 Maverick 17B (Fastest)
+            </option>
+          </select>
+        </div>
+        <div class="info-box">
+          <p>
+            Get your API keys at:
+            <a href="https://console.groq.com/keys" target="_blank"
+              >console.groq.com/keys</a
+            >
+          </p>
+          <p style="margin-top: 8px; font-size: 12px">
+            Keys rotate automatically: each key handles one request, then the next key is used.
+          </p>
+        </div>
+      </div>
+
+      <div id="status-panel" class="panel hidden">
+        <h2>Status</h2>
+        <div id="status-message">Ready</div>
+      </div>
+
+      <div class="footer">
+        <p>ScreenSum DSA &bull; Groq AI &bull; Multi-Key Rotation</p>
+      </div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
