@@ -107,7 +107,7 @@ saveKeysBtn.addEventListener('click', async () => {
         setTimeout(() => {
             settingsPanel.classList.add('hidden');
             statusPanel.classList.remove('hidden');
-            statusMessage.textContent = `Ready! ${result.count} key${result.count > 1 ? 's' : ''} loaded. Press Alt+2 (screenshot) then Alt+4 (solve).`;
+            statusMessage.textContent = `Ready! ${result.count} key${result.count > 1 ? 's' : ''} loaded. Press CapsLock+2 (screenshot) then CapsLock+4 (solve).`;
         }, 1500);
     } else {
         statusMessage.textContent = `Error: ${result.error || 'Failed to save API keys'}`;
@@ -136,6 +136,6 @@ api.getApiKeys().then((keys) => {
     if (keys && keys.length > 0) {
         settingsPanel.classList.add('hidden');
         statusPanel.classList.remove('hidden');
-        statusMessage.textContent = `Ready! ${keys.length} key${keys.length > 1 ? 's' : ''} loaded. Press Alt+2 (screenshot) then Alt+4 (solve).`;
+        statusMessage.textContent = `Ready! ${keys.length} key${keys.length > 1 ? 's' : ''} loaded. Press CapsLock+2 (screenshot) then CapsLock+4 (solve).`;
     }
 });

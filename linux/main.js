@@ -64,7 +64,7 @@ async function initializeStore() {
             defaults: {
                 apiKeys: [],
                 apiKeyIndex: 0,
-                model: 'qwen/qwen3.6-27b',
+                model: 'qwen/qwen3.8-27b',
             },
         });
         log.info('electron-store initialized');
@@ -147,7 +147,7 @@ function createTray() {
         },
     ]);
 
-    tray.setToolTip('ScreenSum DSA - Alt+2 screenshot, Alt+4 solve');
+    tray.setToolTip('ScreenSum DSA - CapsLock+2 screenshot, CapsLock+4 solve');
     tray.setContextMenu(contextMenu);
 
     tray.on('double-click', () => createSettingsWindow());
@@ -248,7 +248,7 @@ function getNextApiKey() {
 // ===============================
 
 function stopTyping() {
-    log.info('Stop typing requested (Alt+`)');
+    log.info('Stop typing requested (CapsLock+`)');
 
     const interruptFile = path.join(
         require('os').homedir(),
@@ -294,15 +294,15 @@ function stopTyping() {
 // ===============================
 
 function registerHotkeys() {
-    // Alt+2 -> screenshot
-    const screenshotRegistered = globalShortcut.register('Alt+2', async () => {
+    // CapsLock+2 -> screenshot
+    const screenshotRegistered = globalShortcut.register('CapsLock+2', async () => {
         if (isProcessing) {
-            log.warn('Already processing. Ignoring Alt+2.');
+            log.warn('Already processing. Ignoring CapsLock+2.');
             return;
         }
 
         isProcessing = true;
-        log.info('Hotkey Alt+2 pressed -> Taking screenshot');
+        log.info('Hotkey CapsLock+2 pressed -> Taking screenshot');
 
         try {
             const result = await runPythonCommand('screenshot');
@@ -314,10 +314,10 @@ function registerHotkeys() {
         }
     });
 
-    // Alt+4 -> solve AND type
-    const solveRegistered = globalShortcut.register('Alt+4', async () => {
+    // CapsLock+4 -> solve AND type
+    const solveRegistered = globalShortcut.register('CapsLock+4', async () => {
         if (isProcessing) {
-            log.warn('Already processing. Ignoring Alt+4.');
+            log.warn('Already processing. Ignoring CapsLock+4.');
             return;
         }
 
@@ -332,11 +332,11 @@ function registerHotkeys() {
         }
 
         isProcessing = true;
-        log.info('Hotkey Alt+4 pressed -> Solving DSA and typing solution');
+        log.info('Hotkey CapsLock+4 pressed -> Solving DSA and typing solution');
 
         try {
             const apiKey = getNextApiKey();
-            const model = store.get('model', 'qwen/qwen3.6-27b');
+            const model = store.get('model', 'qwen/qwen3.8-27b');
 
             const solveResult = await runPythonCommand('solve', apiKey, model);
             log.info('Solve result:', solveResult);
@@ -354,23 +354,23 @@ function registerHotkeys() {
         }
     });
 
-    // Alt+` -> stop typing
-    const stopRegistered = globalShortcut.register('Alt+`', () => {
+    // CapsLock+` -> stop typing
+    const stopRegistered = globalShortcut.register('CapsLock+`', () => {
         stopTyping();
     });
 
-    // Alt+1 -> open settings
-    const settingsRegistered = globalShortcut.register('Alt+1', () => {
+    // CapsLock+1 -> open settings
+    const settingsRegistered = globalShortcut.register('CapsLock+1', () => {
         createSettingsWindow();
         if (settingsWindow) {
             settingsWindow.webContents.send('show-settings');
         }
     });
 
-    log.info(`Alt+2 (screenshot) registered: ${screenshotRegistered}`);
-    log.info(`Alt+4 (solve+type) registered: ${solveRegistered}`);
-    log.info(`Alt+\` (stop) registered: ${stopRegistered}`);
-    log.info(`Alt+1 (settings) registered: ${settingsRegistered}`);
+    log.info(`CapsLock+2 (screenshot) registered: ${screenshotRegistered}`);
+    log.info(`CapsLock+4 (solve+type) registered: ${solveRegistered}`);
+    log.info(`CapsLock+\` (stop) registered: ${stopRegistered}`);
+    log.info(`CapsLock+1 (settings) registered: ${settingsRegistered}`);
 
     if (!screenshotRegistered || !solveRegistered || !stopRegistered || !settingsRegistered) {
         log.error('One or more global shortcuts failed to register.');
@@ -424,11 +424,11 @@ ipcMain.handle('get-settings', () => {
     try {
         return {
             apiKeys: store.get('apiKeys', []),
-            model: store.get('model', 'qwen/qwen3.6-27b'),
+            model: store.get('model', 'qwen/qwen3.8-27b'),
         };
     } catch (error) {
         log.error('Failed to get settings:', error);
-        return { apiKeys: [], model: 'qwen/qwen3.6-27b' };
+        return { apiKeys: [], model: 'qwen/qwen3.8-27b' };
     }
 });
 
@@ -449,7 +449,7 @@ app.whenReady()
 
         registerHotkeys();
 
-        log.info('Hotkeys: Alt+2 (screenshot), Alt+4 (solve + type), Alt+` (stop), Alt+1 (settings)');
+        log.info('Hotkeys: CapsLock+2 (screenshot), CapsLock+4 (solve + type), CapsLock+` (stop), CapsLock+1 (settings)');
     })
     .catch((error) => {
         log.error('Failed during Electron startup:', error);

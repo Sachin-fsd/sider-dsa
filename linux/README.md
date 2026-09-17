@@ -18,18 +18,21 @@ ScreenSum DSA is an automated Data Structures & Algorithms coding assistant for 
 ## Running Locally (Development Mode)
 
 ### Step 1: Install Node.js dependencies
+
 ```bash
 cd linux/
 npm install
 ```
 
 ### Step 2: Set up Python virtual environment
+
 ```bash
 python3 -m venv venv
 venv/bin/pip install -r python/requirements.txt
 ```
 
 ### Step 3: Run the application
+
 ```bash
 npm start
 ```
@@ -46,11 +49,13 @@ npm run dist
 ```
 
 This command will:
+
 1. Build the bundled PyInstaller backend (`python/dsa_backend`)
 2. Package the Electron frontend and bundled backend into an AppImage
 3. Output the standalone binary to `dist/ScreenSum DSA-1.0.0.AppImage`
 
 ### How to use the generated AppImage:
+
 ```bash
 chmod +x "dist/ScreenSum DSA-1.0.0.AppImage"
 ./"dist/ScreenSum DSA-1.0.0.AppImage"
@@ -60,7 +65,7 @@ chmod +x "dist/ScreenSum DSA-1.0.0.AppImage"
 
 ## Hotkeys
 
-- **Alt + 1**: Open Settings (Groq API Key management with round-robin rotation)
-- **Alt + 2**: Take screenshot
-- **Alt + 4**: Solve problem & auto-type solution into code editor
-- **Alt + `**: Stop typing immediately
+- **CapsLock + 1**: Open Settings (Groq API Key management with round-robin rotation)
+- **CapsLock + 2**: Take screenshot
+- **CapsLock + 4**: Solve problem & auto-type solution into code editor
+- **CapsLock + `**: Stop typing immediately
