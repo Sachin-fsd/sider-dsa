@@ -33,8 +33,9 @@ sc-dsa/
 
 - **Multi-API Key Rotation**: Add up to 10 Groq API keys in UI. Automatically rotates one key per request so no rate limits are hit.
 - **Global Hotkeys**:
-  - `Alt + 1`: Open Settings
-  - `Alt + 2`: Take screenshot
-  - `Alt + 4`: Solve DSA problem & human-like auto-type into code editor
-  - `Alt + \``: Stop typing mid-stream
-- **Vision AI Support**: Choice of Qwen 3.6 27B, Llama 4 Scout 17B, or Llama 4 Maverick 17B models.
+- **Global Hotkeys**:
+  - `CapsLock + 1`: Open Settings
+  - `CapsLock + 2`: Take screenshot
+  - `CapsLock + 4`: Solve DSA problem & human-like auto-type into code editor
+  - `CapsLock + \``: Stop typing mid-stream
+- **Vision AI Support**: Choice of Qwen 3.8 27B, Llama 4 Scout 17B, or Llama 4 Maverick 17B models.

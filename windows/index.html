@@ -11,15 +11,20 @@
         <img src="assets/icon.svg" alt="ScreenSum" class="logo" />
         <h1>ScreenSum DSA</h1>
         <p>
-          <kbd>Alt</kbd>+<kbd>2</kbd> screenshot &nbsp;
-          <kbd>Alt</kbd>+<kbd>4</kbd> solve &nbsp;
-          <kbd>Alt</kbd>+<kbd>`</kbd> stop
+          <kbd>CapsLock</kbd>+<kbd>2</kbd> screenshot &nbsp;
+          <kbd>CapsLock</kbd>+<kbd>4</kbd> solve &nbsp; <kbd>CapsLock</kbd>+<kbd
+            >`</kbd
+          >
+          stop
         </p>
       </div>
 
       <div id="settings-panel" class="panel">
         <h2>Setup</h2>
-        <p>Enter Groq API keys. Each key handles one request, then the next key is used.</p>
+        <p>
+          Enter Groq API keys. Each key handles one request, then the next key
+          is used.
+        </p>
         <div class="form-group">
           <label>API Keys:</label>
           <div id="api-keys-container">
@@ -29,7 +34,9 @@
                 class="api-key-input"
                 placeholder="gsk_xxxxxxxxxxxxxxxxxxxx"
               />
-              <button class="remove-key-btn" style="display: none">&#x2715;</button>
+              <button class="remove-key-btn" style="display: none">
+                &#x2715;
+              </button>
             </div>
           </div>
           <button id="add-key-btn">+ Add Key</button>
@@ -39,7 +46,7 @@
         <div class="form-group">
           <label for="model-select">Model:</label>
           <select id="model-select">
-            <option value="qwen/qwen3.6-27b">Qwen 3.6 27B</option>
+            <option value="qwen/qwen3.8-27b">Qwen 3.8 27B</option>
             <option value="meta-llama/llama-4-scout-17b-16e-instruct">
               Llama 4 Scout 17B (Faster)
             </option>
@@ -56,7 +63,8 @@
             >
           </p>
           <p style="margin-top: 8px; font-size: 12px">
-            Keys rotate automatically: each key handles one request, then the next key is used.
+            Keys rotate automatically: each key handles one request, then the
+            next key is used.
           </p>
         </div>
       </div>

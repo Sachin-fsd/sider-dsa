@@ -26,7 +26,7 @@ pyautogui.FAILSAFE = False
 # ============================================================
 
 MAX_WIDTH = 1000
-DEFAULT_VISION_MODEL = "qwen/qwen3.6-27b"
+DEFAULT_VISION_MODEL = "qwen/qwen3.8-27b"
 
 
 def parse_args():
@@ -317,26 +317,12 @@ def send_to_groq(image_b64, api_key, model):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a code generator. You only output C++ code. No explanations, no thoughts, no analysis, no comments in code. Start directly with #include or class Solution."
+                    "content": "You are an expert programming problem solver. Read the screenshot, identify the selected programming language, and solve the problem in that language. If no language is visible, use C++. Output only complete code with no explanations, markdown, comments."
                 },
                 {
                     "role": "user",
 
                     "content": [
-                        {
-                            "type": "text",
-
-                            "text": (
-                                "Write a COMPLETE working C++ solution for the problem in the screenshot.\n\n"
-                                "CRITICAL RULES:\n"
-                                "1. Output ONLY C++ code\n"
-                                "2. NO explanations, NO reasoning, NO thinking\n"
-                                "3. NO markdown formatting\n"
-                                "4. Start directly with #include or class Solution\n"
-                                "5. Do NOT include any text outside the code"
-                            )
-                        },
-
                         {
                             "type": "image_url",
 
@@ -905,7 +891,7 @@ def main():
                 json.dumps(
                     {
                         "error":
-                            "No API key provided. Configure keys in settings (Alt+1)."
+                            "No API key provided. Configure keys in settings (CapsLock+1)."
                     }
                 )
             )
